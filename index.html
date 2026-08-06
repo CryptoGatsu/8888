@@ -1,0 +1,1073 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>$8888 Lucky Number · 發發發發</title>
+<meta name="description" content="8888 is the luckiest number in Chinese culture. $8888 on BNB Chain: 3% / 3% tax, paid straight back to holders in the same transaction.">
+<meta property="og:title" content="$8888 Lucky Number">
+<meta property="og:description" content="Four eights. Four fortunes. Every trade pays holders instantly on BNB Chain.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="$8888 Lucky Number">
+<meta name="twitter:description" content="Four eights. Four fortunes. Every trade pays holders instantly on BNB Chain.">
+<meta name="twitter:image" content="og.png">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%23F0B90B'/><text x='50' y='73' font-size='64' font-family='Arial,Helvetica,sans-serif' font-weight='800' text-anchor='middle' fill='%23000'>8</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Manrope:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&family=Noto+Sans+SC:wght@400;500;700;900&family=Noto+Serif+SC:wght@600;900&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --ink:#07070A;
+  --ink-2:#0E0E13;
+  --line:#25252E;
+  --gold:#F0B90B;
+  --gold-soft:#FFD75E;
+  --red:#C8102E;
+  --paper:#F7F4EC;
+  --mute:#A6A6B3;
+  --text-2:#CFCFDA;
+  --maxw:1120px;
+  --pad:clamp(20px,5vw,44px);
+
+  --display:"Sora",system-ui,-apple-system,sans-serif;
+  --body:"Manrope",system-ui,-apple-system,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,monospace;
+}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto} *{animation:none!important;transition:none!important}}
+
+body{
+  margin:0;
+  background:var(--ink);
+  color:var(--paper);
+  font-family:var(--body);
+  font-size:17px;
+  line-height:1.66;
+  font-weight:400;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+body.zh{font-family:"Noto Sans SC",var(--body);letter-spacing:.012em}
+
+.wrap{max-width:var(--maxw);margin:0 auto;padding-left:var(--pad);padding-right:var(--pad)}
+a{color:inherit}
+img{max-width:100%}
+
+.label{
+  font-family:var(--body);font-size:11px;font-weight:600;
+  letter-spacing:.22em;text-transform:uppercase;
+}
+body.zh .label{font-family:"Noto Sans SC",var(--body);letter-spacing:.16em}
+
+/* ---------- nav ---------- */
+.nav{
+  position:sticky;top:0;z-index:60;
+  background:rgba(7,7,10,.84);
+  backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--line);
+}
+.nav-in{display:flex;align-items:center;gap:14px;height:66px}
+.brand{
+  font-family:var(--display);font-weight:800;
+  font-size:23px;letter-spacing:-.03em;color:var(--gold);
+  text-decoration:none;line-height:1;margin-right:auto;
+}
+.brand span{
+  color:var(--paper);font-family:var(--body);font-size:10.5px;font-weight:600;
+  letter-spacing:.2em;text-transform:uppercase;margin-left:12px;
+  vertical-align:middle;display:none;
+}
+@media(min-width:640px){.brand span{display:inline}}
+
+.lang{display:inline-flex;border:1px solid var(--line);border-radius:999px;overflow:hidden}
+.lang button{
+  background:none;border:0;color:var(--mute);padding:7px 14px;cursor:pointer;
+  font-family:var(--body);font-size:11.5px;font-weight:700;letter-spacing:.12em;
+  transition:background .2s,color .2s;
+}
+.lang button.on{background:var(--gold);color:#000}
+.lang button:focus-visible{outline:2px solid var(--gold-soft);outline-offset:-2px}
+
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  background:var(--gold);color:#000;text-decoration:none;
+  font-family:var(--body);font-weight:700;font-size:14px;letter-spacing:.02em;
+  padding:12px 22px;border-radius:6px;border:1px solid var(--gold);
+  transition:transform .16s ease,box-shadow .22s ease,background .2s;
+  white-space:nowrap;
+}
+.btn:hover{transform:translateY(-2px);box-shadow:0 10px 30px -10px rgba(240,185,11,.8);background:var(--gold-soft)}
+.btn:focus-visible{outline:2px solid var(--paper);outline-offset:3px}
+.btn.ghost{background:transparent;color:var(--gold);border-color:var(--line)}
+.btn.ghost:hover{border-color:var(--gold);background:rgba(240,185,11,.07);box-shadow:none}
+.nav .btn{padding:10px 17px;font-size:13px}
+
+/* ---------- hero ---------- */
+.hero{position:relative;padding:clamp(52px,10vw,110px) 0 clamp(40px,7vw,74px);text-align:center;overflow:hidden}
+.hero::before{
+  content:"";position:absolute;inset:-42% 0 auto 50%;
+  width:120vw;height:120vw;max-width:1400px;max-height:1400px;transform:translateX(-50%);
+  background:radial-gradient(circle,rgba(240,185,11,.15) 0%,rgba(240,185,11,.035) 38%,transparent 66%);
+  pointer-events:none;
+}
+.hero .wrap{position:relative}
+
+.eyebrow{color:var(--gold);margin:0 0 clamp(20px,4vw,32px)}
+
+.eights{
+  display:flex;justify-content:center;align-items:baseline;
+  gap:clamp(4px,1.8vw,24px);
+  font-family:var(--display);font-weight:800;font-variant-numeric:lining-nums;
+  font-size:clamp(80px,20vw,214px);line-height:.94;letter-spacing:-.03em;
+  color:var(--gold);margin:0;
+}
+.eights b{
+  display:inline-block;font-weight:800;cursor:pointer;
+  transition:transform .6s cubic-bezier(.65,-.2,.25,1.25),color .4s;
+  transform-origin:50% 46%;
+  text-shadow:0 0 70px rgba(240,185,11,.4);
+}
+.eights b.flip{transform:rotate(90deg) scale(.9);color:var(--gold-soft)}
+.eights b:focus-visible{outline:2px solid var(--gold-soft);outline-offset:6px;border-radius:4px}
+.eights b{-webkit-tap-highlight-color:transparent}
+@media(hover:hover) and (pointer:fine){
+  .eights b:hover{transform:rotate(90deg) scale(.9);color:var(--gold-soft)}
+}
+.flip-hint{color:var(--mute);margin:18px 0 0}
+.flip-hint b{color:var(--gold);font-weight:600}
+
+.hero h1{
+  font-family:var(--display);font-weight:800;
+  font-size:clamp(30px,5.4vw,54px);line-height:1.14;letter-spacing:-.03em;color:#FFFFFF;
+  margin:clamp(26px,5vw,40px) 0 0;
+}
+body.zh .hero h1{font-family:"Noto Serif SC",serif;font-weight:900;letter-spacing:.03em}
+.hero h1 em{font-style:normal;color:var(--gold)}
+body.zh .hero h1 em{font-style:normal}
+.hero p.lede{max-width:53ch;margin:20px auto 0;color:#DCDCE6;font-size:clamp(15.5px,2.2vw,19px)}
+
+.cta-row{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:clamp(28px,5vw,38px)}
+
+.ca{
+  margin:28px auto 0;max-width:580px;
+  border:1px solid var(--line);background:var(--ink-2);border-radius:8px;
+  padding:12px 14px;display:flex;align-items:center;gap:12px;
+}
+.ca-label{color:var(--mute);flex:0 0 auto}
+.ca code{
+  font-family:var(--mono);font-size:12px;color:#FFFFFF;
+  overflow:hidden;text-overflow:ellipsis;white-space:nowrap;flex:1;text-align:left;
+}
+.copy{
+  background:transparent;border:1px solid var(--line);color:var(--gold);
+  font-family:var(--body);font-size:10.5px;font-weight:700;letter-spacing:.16em;
+  text-transform:uppercase;padding:9px 12px;border-radius:5px;cursor:pointer;flex:0 0 auto;transition:.2s;
+}
+.copy:hover{border-color:var(--gold);background:rgba(240,185,11,.09)}
+.copy:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+
+/* ---------- section frame ---------- */
+section{padding:clamp(58px,9vw,108px) 0;border-top:1px solid var(--line)}
+.sec-head{margin-bottom:clamp(30px,5vw,50px);max-width:62ch}
+.sec-tag{color:var(--gold);margin:0 0 14px}
+h2{
+  font-family:var(--display);font-weight:800;
+  font-size:clamp(29px,4.6vw,46px);line-height:1.16;margin:0;
+  letter-spacing:-.028em;color:#FFFFFF;
+}
+body.zh h2{font-family:"Noto Serif SC",serif;font-weight:900;letter-spacing:.03em}
+.sec-head p{color:var(--text-2);margin:16px 0 0;max-width:57ch}
+
+/* ---------- the sound ---------- */
+.sound{display:grid;gap:clamp(16px,3vw,26px);grid-template-columns:1fr;align-items:stretch}
+@media(min-width:820px){.sound{grid-template-columns:1fr auto 1fr}}
+.glyph-card{background:var(--ink-2);border:1px solid var(--line);border-radius:12px;padding:clamp(26px,4vw,42px);text-align:center}
+.glyph-card .g{
+  font-family:"Noto Serif SC",serif;font-weight:900;
+  font-size:clamp(80px,14vw,138px);line-height:1;color:var(--gold);display:block;
+}
+.glyph-card.red .g{color:var(--red);text-shadow:0 0 60px rgba(200,16,46,.38)}
+.glyph-card .pin{
+  font-family:var(--body);font-weight:700;font-size:20px;
+  letter-spacing:.08em;color:#FFFFFF;margin:18px 0 8px;
+}
+.glyph-card .mean{color:var(--text-2);font-size:15px;margin:0}
+.equals{display:flex;align-items:center;justify-content:center;font-family:var(--display);font-weight:600;font-size:34px;color:var(--gold)}
+@media(max-width:819px){.equals{font-size:26px}}
+
+/* ---------- the post ---------- */
+.post-wrap{max-width:580px;margin:0 auto}
+.post{
+  border:1px solid var(--line);border-radius:16px;background:var(--ink-2);
+  overflow:hidden;
+}
+.post-top{display:flex;align-items:center;gap:12px;padding:20px 22px 0}
+.av{
+  width:44px;height:44px;border-radius:50%;flex:0 0 auto;
+  background:var(--gold);color:#000;display:flex;align-items:center;justify-content:center;
+  font-family:var(--display);font-weight:800;font-size:15px;letter-spacing:-.02em;
+}
+.who{min-width:0}
+.who .nm{display:flex;align-items:center;gap:5px;font-weight:800;font-size:15.5px;color:#FFFFFF;line-height:1.25}
+.who .nm svg{flex:0 0 auto}
+.who .hd{font-size:14px;color:var(--mute);line-height:1.3}
+.post-x{margin-left:auto;flex:0 0 auto;color:var(--mute);display:flex;align-items:center}
+
+.post-body{padding:16px 22px 18px;font-size:17px;line-height:1.6;color:#FFFFFF}
+.post-body p{margin:0}
+.post-body p + p{margin-top:14px}
+
+.post-media{display:block;border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:#000}
+.post-media img{display:block;width:100%;height:auto}
+
+.post-foot{
+  display:flex;flex-wrap:wrap;align-items:center;gap:10px;
+  padding:16px 22px 20px;
+}
+.post-date{font-size:13.5px;color:var(--mute)}
+.post-link{
+  margin-left:auto;text-decoration:none;color:var(--gold);font-weight:700;font-size:14.5px;
+  border:1px solid var(--line);border-radius:999px;padding:8px 16px;transition:.2s;
+}
+.post-link:hover{border-color:var(--gold);background:rgba(240,185,11,.08)}
+.post-link:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+
+.post-note{text-align:center;color:var(--mute);margin:18px 0 0;font-size:13.5px}
+
+/* ---------- eight reasons ---------- */
+.reasons{display:grid;gap:1px;background:var(--line);border:1px solid var(--line);border-radius:12px;overflow:hidden}
+@media(min-width:700px){.reasons{grid-template-columns:1fr 1fr}}
+.reason{background:var(--ink-2);padding:clamp(24px,3.4vw,34px);transition:background .25s}
+.reason:hover{background:#16161D}
+.reason .num{
+  font-family:"Noto Serif SC",serif;font-weight:900;font-size:24px;color:var(--gold);
+  display:block;line-height:1;margin-bottom:16px;
+}
+.reason h3{font-family:var(--body);font-weight:800;font-size:20px;letter-spacing:-.012em;margin:0 0 10px;line-height:1.3;color:#FFFFFF}
+body.zh .reason h3{font-family:"Noto Sans SC",sans-serif;font-weight:900;font-size:19px;letter-spacing:.01em}
+.reason p{margin:0;color:var(--text-2);font-size:16px;line-height:1.6}
+
+/* ---------- tokenomics ---------- */
+.stats{display:grid;gap:1px;background:var(--line);border:1px solid var(--line);border-radius:12px;overflow:hidden}
+@media(min-width:560px){.stats{grid-template-columns:1fr 1fr}}
+@media(min-width:900px){.stats{grid-template-columns:repeat(4,1fr)}}
+.stat{background:var(--ink-2);padding:clamp(24px,3vw,32px)}
+.stat .k{color:var(--mute);margin:0 0 12px}
+.stat .v{font-family:var(--display);font-weight:800;font-size:clamp(25px,3.3vw,33px);color:var(--gold);line-height:1.05;margin:0;letter-spacing:-.025em}
+body.zh .stat .v{font-family:"Noto Serif SC",serif;font-weight:900}
+.stat .s{margin:12px 0 0;font-size:14px;color:var(--text-2)}
+
+.flow{display:grid;gap:14px;margin-top:clamp(24px,4vw,34px)}
+@media(min-width:760px){.flow{grid-template-columns:repeat(3,1fr)}}
+.step{
+  border:1px solid var(--line);border-radius:12px;padding:clamp(24px,3vw,30px);
+  background:linear-gradient(160deg,rgba(240,185,11,.06),transparent 62%);
+}
+.step .n{color:var(--gold);display:block;margin-bottom:14px}
+.step h3{font-family:var(--body);font-weight:800;margin:0 0 10px;font-size:19px;letter-spacing:-.012em;color:#FFFFFF}
+body.zh .step h3{font-family:"Noto Sans SC",sans-serif;font-weight:900;font-size:18px;letter-spacing:.01em}
+.step p{margin:0;color:var(--text-2);font-size:15.5px;line-height:1.6}
+
+.note{
+  margin-top:clamp(24px,4vw,32px);
+  border-left:2px solid var(--gold);background:var(--ink-2);
+  padding:20px 22px;border-radius:0 8px 8px 0;color:var(--text-2);font-size:15.5px;
+}
+.note strong{color:var(--gold);font-weight:700}
+
+/* ---------- rewards vault ---------- */
+.vault{
+  border:1px solid var(--line);border-radius:16px;background:var(--ink-2);
+  overflow:hidden;max-width:720px;margin:0 auto;
+}
+.vault-head{
+  display:flex;align-items:center;gap:10px;
+  padding:18px 22px;border-bottom:1px solid var(--line);
+}
+.vault-head .t{color:var(--mute)}
+.vault-live{margin-left:auto;display:flex;align-items:center;gap:8px;color:var(--gold)}
+.dot{
+  width:8px;height:8px;border-radius:50%;background:var(--gold);
+  box-shadow:0 0 0 0 rgba(240,185,11,.7);animation:pulse 2.2s infinite;
+}
+.dot.off{background:#5A5A66;animation:none;box-shadow:none}
+@keyframes pulse{
+  0%{box-shadow:0 0 0 0 rgba(240,185,11,.55)}
+  70%{box-shadow:0 0 0 9px rgba(240,185,11,0)}
+  100%{box-shadow:0 0 0 0 rgba(240,185,11,0)}
+}
+@media (prefers-reduced-motion:reduce){.dot{animation:none}}
+
+.vault-stats{display:grid;gap:1px;background:var(--line)}
+@media(min-width:520px){.vault-stats{grid-template-columns:1fr 1fr}}
+.vault-stat{background:var(--ink-2);padding:20px 22px}
+.vault-stat .k{color:var(--mute);margin:0 0 10px}
+.vault-stat .v{
+  font-family:var(--display);font-weight:800;letter-spacing:-.025em;
+  font-size:clamp(23px,3.2vw,30px);color:var(--gold);line-height:1.1;margin:0;
+}
+.vault-stat .s{margin:8px 0 0;font-size:13.5px;color:var(--mute)}
+
+.feed{border-top:1px solid var(--line);max-height:420px;overflow-y:auto;overscroll-behavior:contain}
+.feed::-webkit-scrollbar{width:8px}
+.feed::-webkit-scrollbar-thumb{background:#2E2E38;border-radius:8px}
+.row{
+  display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;
+  padding:15px 22px;border-bottom:1px solid var(--line);
+  animation:fadein .45s ease both;
+}
+.row:last-child{border-bottom:0}
+@keyframes fadein{from{opacity:0;transform:translateY(-5px)}to{opacity:1;transform:none}}
+.row .addr{font-family:var(--mono);font-size:13.5px;color:#FFFFFF}
+.row .amt{margin-left:auto;font-family:var(--mono);font-size:13.5px;font-weight:500;color:var(--gold);text-align:right;white-space:nowrap}
+.row .when{flex-basis:100%;font-size:12.5px;color:var(--mute);margin-top:3px}
+.row .usd{float:right;font-family:var(--mono);font-size:12.5px;color:var(--mute)}
+
+.feed-empty{padding:34px 22px;text-align:center;color:var(--text-2);font-size:15px}
+.feed-empty b{display:block;color:#FFFFFF;font-weight:800;margin-bottom:6px}
+
+.vault-foot{
+  display:flex;align-items:center;gap:12px;flex-wrap:wrap;
+  padding:16px 22px;border-top:1px solid var(--line);
+}
+.vault-foot .c{color:var(--mute)}
+.vault-foot a{margin-left:auto;color:var(--gold);font-weight:700;font-size:14px;text-decoration:none}
+.vault-foot a:hover{text-decoration:underline}
+
+.skeleton{
+  display:inline-block;height:1em;width:7ch;border-radius:4px;
+  background:linear-gradient(90deg,#1C1C24,#26262F,#1C1C24);
+  background-size:200% 100%;animation:shim 1.4s linear infinite;vertical-align:middle;
+}
+@keyframes shim{to{background-position:-200% 0}}
+
+/* ---------- links ---------- */
+.links{display:grid;gap:12px}
+@media(min-width:640px){.links{grid-template-columns:1fr 1fr 1fr}}
+.link-card{display:block;text-decoration:none;border:1px solid var(--line);border-radius:10px;padding:24px;background:var(--ink-2);transition:.22s}
+.link-card:hover{border-color:var(--gold);transform:translateY(-3px);background:#16161D}
+.link-card:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+.link-card .lk{color:var(--mute);margin:0 0 10px}
+.link-card .lv{font-family:var(--display);font-weight:700;font-size:21px;color:#FFFFFF;margin:0;letter-spacing:-.02em}
+.link-card:hover .lv{color:var(--gold)}
+
+/* ---------- footer ---------- */
+footer{border-top:1px solid var(--line);padding:48px 0 64px;text-align:center}
+.foot-8{font-family:"Noto Serif SC",serif;font-weight:900;font-size:40px;color:var(--gold);letter-spacing:.1em;margin:0 0 20px}
+footer p{color:var(--text-2);font-size:14px;margin:0 auto;max-width:62ch}
+footer p + p{margin-top:12px}
+
+::selection{background:var(--gold);color:#000}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="wrap nav-in">
+    <a class="brand" href="#top">$8888<span data-en="Lucky Number" data-zh="幸运数字">Lucky Number</span></a>
+    <div class="lang" role="group" aria-label="Language">
+      <button type="button" id="btn-en" class="on" aria-pressed="true">EN</button>
+      <button type="button" id="btn-zh" aria-pressed="false">中文</button>
+    </div>
+    <a class="btn" href="https://flap.sh/bnb/0x7f1863da34964f5d93dce0ac22eb6f558b0a7777" target="_blank" rel="noopener" data-en="Buy $8888" data-zh="购买 $8888">Buy $8888</a>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="wrap">
+    <p class="eyebrow label" data-en="BNB Chain · Ticker $8888" data-zh="BNB 链 · 代号 $8888">BNB Chain · Ticker $8888</p>
+
+    <p class="eights" aria-label="8888"><b>8</b><b>8</b><b>8</b><b>8</b></p>
+    <p class="flip-hint label" data-en="Tap an eight to turn it into infinity" data-zh="点一下八字，它会变成无穷">Tap an eight to turn it into infinity</p>
+
+    <h1 data-en="Four eights. <em>Four fortunes.</em>" data-zh="四个八，<em>四重发财。</em>">Four eights. <em>Four fortunes.</em></h1>
+    <p class="lede" data-en="In Chinese, eight (bā) sounds like fā, the word for prosper. Stack four of them together and you get the most requested number in the world: 8888." data-zh="在中文里，「八」的发音接近「发」，也就是发财的发。四个八叠在一起，就成了全世界最抢手的数字：8888。">In Chinese, eight (bā) sounds like fā, the word for prosper. Stack four of them together and you get the most requested number in the world: 8888.</p>
+
+    <div class="cta-row">
+      <a class="btn" href="https://flap.sh/bnb/0x7f1863da34964f5d93dce0ac22eb6f558b0a7777" target="_blank" rel="noopener" data-en="Buy on Flap" data-zh="在 Flap 购买">Buy on Flap</a>
+      <a class="btn ghost" href="https://x.com/8888cto" target="_blank" rel="noopener" data-en="Follow @8888cto" data-zh="关注 @8888cto">Follow @8888cto</a>
+    </div>
+
+    <div class="ca">
+      <span class="ca-label label" data-en="Contract" data-zh="合约">Contract</span>
+      <code id="ca-text">0x7f1863da34964f5d93dce0ac22eb6f558b0a7777</code>
+      <button class="copy" id="copy-btn" type="button" data-en="Copy" data-zh="复制">Copy</button>
+    </div>
+  </div>
+</header>
+
+<!-- THE SOUND -->
+<section id="meaning">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="sec-tag label" data-en="The reason" data-zh="缘由">The reason</p>
+      <h2 data-en="It comes down to how it sounds" data-zh="一切都源于读音">It comes down to how it sounds</h2>
+      <p data-en="Chinese is full of homophones, and luck follows them. Eight is lucky for one plain reason: say it out loud and it sounds like the word for getting rich." data-zh="中文里同音字极多，吉利也跟着读音走。八之所以吉利，原因很简单：念出来，就像「发财」的「发」。">Chinese is full of homophones, and luck follows them. Eight is lucky for one plain reason: say it out loud and it sounds like the word for getting rich.</p>
+    </div>
+
+    <div class="sound">
+      <div class="glyph-card">
+        <span class="g">八</span>
+        <p class="pin">bā</p>
+        <p class="mean" data-en="The number eight" data-zh="数字八">The number eight</p>
+      </div>
+      <div class="equals">≈</div>
+      <div class="glyph-card red">
+        <span class="g">發</span>
+        <p class="pin">fā</p>
+        <p class="mean" data-en="To prosper, to make a fortune (發財)" data-zh="发达、发财（發財）">To prosper, to make a fortune (發財)</p>
+      </div>
+    </div>
+
+    <div class="note" data-en="So <strong>888</strong> reads as prosper, prosper, prosper. And <strong>8888</strong> is that same wish turned all the way up. It is the number people pay real money for on phone lines, license plates and apartment floors." data-zh="所以 <strong>888</strong> 就是「发发发」。而 <strong>8888</strong> 则是把这份寓意推到顶点。人们愿意为这样的号码在手机号、车牌和楼层上花真金白银。">So <strong>888</strong> reads as prosper, prosper, prosper. And <strong>8888</strong> is that same wish turned all the way up. It is the number people pay real money for on phone lines, license plates and apartment floors.</div>
+  </div>
+</section>
+
+<!-- THE POST -->
+<section id="post">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="sec-tag label" data-en="The spark" data-zh="缘起">The spark</p>
+      <h2 data-en="One post from CZ" data-zh="CZ 的一条推文">One post from CZ</h2>
+      <p data-en="In Kyrgyzstan, CZ's hosts handed him a car plate reading 888 BNB. He posted the photo, then explained the number." data-zh="在吉尔吉斯斯坦，东道主送给 CZ 一块写着 888 BNB 的车牌。他发出照片，并解释了这个数字。">In Kyrgyzstan, CZ's hosts handed him a car plate reading 888 BNB. He posted the photo, then explained the number.</p>
+    </div>
+
+    <div class="post-wrap">
+      <article class="post">
+        <div class="post-top">
+          <span class="av">CZ</span>
+          <span class="who">
+            <span class="nm">CZ 🔶 BNB
+              <svg width="15" height="15" viewBox="0 0 24 24" aria-hidden="true"><path fill="#F0B90B" d="M22.25 12c0-1.43-.88-2.67-2.19-3.34.46-1.39.2-2.9-.81-3.91s-2.52-1.27-3.91-.81C14.67 2.63 13.43 1.75 12 1.75s-2.67.88-3.34 2.19c-1.39-.46-2.9-.2-3.91.81s-1.27 2.52-.81 3.91C2.63 9.33 1.75 10.57 1.75 12s.88 2.67 2.19 3.34c-.46 1.39-.2 2.9.81 3.91s2.52 1.27 3.91.81c.67 1.31 1.91 2.19 3.34 2.19s2.67-.88 3.34-2.19c1.39.46 2.9.2 3.91-.81s1.27-2.52.81-3.91c1.31-.67 2.19-1.91 2.19-3.34zm-11.71 4.2L6.8 12.46l1.41-1.42 2.26 2.26 4.8-5.23 1.47 1.36-6.2 6.77z"/></svg>
+            </span>
+            <span class="hd">@cz_binance</span>
+          </span>
+          <a class="post-x" href="https://x.com/cz_binance/status/1958943532074328139" target="_blank" rel="noopener" aria-label="View on X">
+            <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+          </a>
+        </div>
+
+        <div class="post-body">
+          <p data-en="Not planned. That car plate was organized by the warm hosts of Kyrgyzstan without my prior knowledge. They gave it to me as a souvenir at the end of the very memorable trip." data-zh="并非事先安排。那块车牌是吉尔吉斯斯坦热情的东道主在我不知情的情况下准备的。在那趟难忘的行程结束时，他们把它作为纪念品送给了我。">Not planned. That car plate was organized by the warm hosts of Kyrgyzstan without my prior knowledge. They gave it to me as a souvenir at the end of the very memorable trip.</p>
+          <p data-en="They say 8888 is lucky in Chinese. 😂" data-zh="他们说 8888 在中文里很吉利。😂">They say 8888 is lucky in Chinese. 😂</p>
+        </div>
+
+        <a class="post-media" href="https://x.com/cz_binance/status/1958943532074328139" target="_blank" rel="noopener">
+          <img src="cz-plate.jpg" alt="CZ standing beside a black sedan with a licence plate reading 888 BNB" loading="lazy" width="959" height="1231">
+        </a>
+
+        <div class="post-foot">
+          <span class="post-date" data-en="August 22, 2025" data-zh="2025 年 8 月 22 日">August 22, 2025</span>
+          <a class="post-link" href="https://x.com/cz_binance/status/1958943532074328139" target="_blank" rel="noopener" data-en="View on X" data-zh="在 X 上查看">View on X</a>
+        </div>
+      </article>
+
+      <p class="post-note" data-en="Post by @cz_binance, quoted with a link to the original. $8888 is a community token and is not affiliated with CZ or Binance." data-zh="原帖来自 @cz_binance，此处引用并附有原文链接。$8888 为社区代币，与 CZ 及币安均无关联。">Post by @cz_binance, quoted with a link to the original. $8888 is a community token and is not affiliated with CZ or Binance.</p>
+    </div>
+  </div>
+</section>
+
+<!-- EIGHT REASONS -->
+<section id="eight">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="sec-tag label" data-en="Eight reasons, obviously" data-zh="当然是八个理由">Eight reasons, obviously</p>
+      <h2 data-en="Why the world chases eights" data-zh="世界为何追逐「八」">Why the world chases eights</h2>
+    </div>
+
+    <div class="reasons">
+      <article class="reason">
+        <span class="num">一</span>
+        <h3 data-en="It sounds like money" data-zh="它听起来就是钱">It sounds like money</h3>
+        <p data-en="Bā and fā are close enough that eight has carried the meaning of wealth in Mandarin and Cantonese for centuries." data-zh="「八」与「发」读音相近，几个世纪以来，无论普通话还是粤语，八都带着财富的意味。">Bā and fā are close enough that eight has carried the meaning of wealth in Mandarin and Cantonese for centuries.</p>
+      </article>
+
+      <article class="reason">
+        <span class="num">二</span>
+        <h3 data-en="Repeats multiply the meaning" data-zh="重复让寓意加倍">Repeats multiply the meaning</h3>
+        <p data-en="One eight is good luck. Four in a row reads as continuous, compounding fortune. Not a wish, a run." data-zh="一个八是好运，四个八连在一起就是连绵不断、层层叠加的财运，不是许愿，是势头。">One eight is good luck. Four in a row reads as continuous, compounding fortune. Not a wish, a run.</p>
+      </article>
+
+      <article class="reason">
+        <span class="num">三</span>
+        <h3 data-en="Turn it sideways and it is infinity" data-zh="把它转过来就是无穷">Turn it sideways and it is infinity</h3>
+        <p data-en="Rotate an 8 ninety degrees and you get the infinity sign. Four eights, four infinities. Endless flow, no beginning and no end." data-zh="把 8 旋转九十度就是无穷符号。四个八，四重无穷，循环不息，无始无终。">Rotate an 8 ninety degrees and you get the infinity sign. Four eights, four infinities. Endless flow, no beginning and no end.</p>
+      </article>
+
+      <article class="reason">
+        <span class="num">四</span>
+        <h3 data-en="The Olympics were timed to it" data-zh="奥运会为它对表">The Olympics were timed to it</h3>
+        <p data-en="Beijing opened the 2008 Summer Games on 08/08/2008 at 8:08:08 pm. That is a country picking a start time for luck, on television, in front of the world." data-zh="北京 2008 年夏季奥运会于 2008 年 8 月 8 日晚 8 点 08 分 08 秒开幕。一个国家在全世界的注视下，为讨吉利而选定了开幕时刻。">Beijing opened the 2008 Summer Games on 08/08/2008 at 8:08:08 pm. That is a country picking a start time for luck, on television, in front of the world.</p>
+      </article>
+
+      <article class="reason">
+        <span class="num">五</span>
+        <h3 data-en="People bid for it" data-zh="有人为它竞价">People bid for it</h3>
+        <p data-en="Phone numbers, license plates and lucky addresses full of eights sell at auction for sums that make no sense until you understand the number." data-zh="满是八的手机号、车牌和门牌在拍卖会上卖出的价格，只有懂得这个数字的人才能理解。">Phone numbers, license plates and lucky addresses full of eights sell at auction for sums that make no sense until you understand the number.</p>
+      </article>
+
+      <article class="reason">
+        <span class="num">六</span>
+        <h3 data-en="Buildings are numbered around it" data-zh="楼盘按它编号">Buildings are numbered around it</h3>
+        <p data-en="Developers price the 8th and 88th floors higher and quietly skip the 4th, because four sounds like the word for death. Luck is literally built into the elevator panel." data-zh="开发商会把 8 楼、88 楼定得更贵，同时悄悄跳过 4 楼，因为「四」谐音「死」。吉利就写在电梯按钮上。">Developers price the 8th and 88th floors higher and quietly skip the 4th, because four sounds like the word for death. Luck is literally built into the elevator panel.</p>
+      </article>
+
+      <article class="reason">
+        <span class="num">七</span>
+        <h3 data-en="Eight is a whole system" data-zh="八本身就是一套体系">Eight is a whole system</h3>
+        <p data-en="The bāguà, the eight trigrams, map the whole world in feng shui and the I Ching. Eight already meant completeness before it ever meant money." data-zh="八卦以八个符号涵盖天地，是风水与《易经》的根基。在成为财富的象征之前，八早已代表圆满。">The bāguà, the eight trigrams, map the whole world in feng shui and the I Ching. Eight already meant completeness before it ever meant money.</p>
+      </article>
+
+      <article class="reason">
+        <span class="num">八</span>
+        <h3 data-en="Crypto was built on eights" data-zh="加密世界建在八上">Crypto was built on eights</h3>
+        <p data-en="One bitcoin divides into 100,000,000 satoshis, exactly eight decimal places. The number was in the money from day one." data-zh="1 枚比特币可分为 100,000,000 聪，正好八位小数。从第一天起，八就写在这套货币里。">One bitcoin divides into 100,000,000 satoshis, exactly eight decimal places. The number was in the money from day one.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- TOKENOMICS -->
+<section id="tokenomics">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="sec-tag label" data-en="Tokenomics" data-zh="代币经济">Tokenomics</p>
+      <h2 data-en="3% in, 3% out, straight back to holders" data-zh="买 3%，卖 3%，直接回到持有者手中">3% in, 3% out, straight back to holders</h2>
+      <p data-en="Launched on Flap with a programmable tax. Nothing to claim, nothing to stake, no dashboard to check. The fee is settled inside the same transaction that created it." data-zh="通过 Flap 的可编程税率发行。无需领取，无需质押，也不用去后台查。手续费在产生它的那一笔交易里就已结算完毕。">Launched on Flap with a programmable tax. Nothing to claim, nothing to stake, no dashboard to check. The fee is settled inside the same transaction that created it.</p>
+    </div>
+
+    <div class="stats">
+      <div class="stat">
+        <p class="k label" data-en="Total supply" data-zh="总供应量">Total supply</p>
+        <p class="v">1,000,000,000</p>
+        <p class="s" data-en="Fixed. No mint function." data-zh="固定发行，无增发功能。">Fixed. No mint function.</p>
+      </div>
+      <div class="stat">
+        <p class="k label" data-en="Buy tax" data-zh="买入税">Buy tax</p>
+        <p class="v">3%</p>
+        <p class="s" data-en="Taken on the way in." data-zh="买入时收取。">Taken on the way in.</p>
+      </div>
+      <div class="stat">
+        <p class="k label" data-en="Sell tax" data-zh="卖出税">Sell tax</p>
+        <p class="v">3%</p>
+        <p class="s" data-en="Taken on the way out." data-zh="卖出时收取。">Taken on the way out.</p>
+      </div>
+      <div class="stat">
+        <p class="k label" data-en="Paid to holders" data-zh="分给持有者">Paid to holders</p>
+        <p class="v" data-en="Instantly" data-zh="即时">Instantly</p>
+        <p class="s" data-en="Same block. Same transaction." data-zh="同一区块，同一笔交易。">Same block. Same transaction.</p>
+      </div>
+    </div>
+
+    <div class="flow">
+      <div class="step">
+        <span class="n label" data-en="Step 01" data-zh="第 1 步">Step 01</span>
+        <h3 data-en="Someone trades" data-zh="有人交易">Someone trades</h3>
+        <p data-en="Every buy and every sell of $8888 carries a 3% fee. Trade size sets the size of the fee. Nothing else does." data-zh="每一笔 $8888 的买入和卖出都会收取 3% 手续费。手续费的大小只由交易额决定。">Every buy and every sell of $8888 carries a 3% fee. Trade size sets the size of the fee. Nothing else does.</p>
+      </div>
+      <div class="step">
+        <span class="n label" data-en="Step 02" data-zh="第 2 步">Step 02</span>
+        <h3 data-en="The contract splits it" data-zh="合约自动分配">The contract splits it</h3>
+        <p data-en="Flap's programmable tax routes that fee through the token contract automatically. No multisig, no treasury wallet deciding later." data-zh="Flap 的可编程税率会自动通过代币合约分配这笔手续费。没有多签，也没有金库钱包事后决定。">Flap's programmable tax routes that fee through the token contract automatically. No multisig, no treasury wallet deciding later.</p>
+      </div>
+      <div class="step">
+        <span class="n label" data-en="Step 03" data-zh="第 3 步">Step 03</span>
+        <h3 data-en="Holders get paid" data-zh="持有者到账">Holders get paid</h3>
+        <p data-en="Your share lands in proportion to what you hold, in the same transaction. Hold the number, collect from the volume." data-zh="你的份额按持仓比例，在同一笔交易中到账。持有这个数字，就从成交量中分成。">Your share lands in proportion to what you hold, in the same transaction. Hold the number, collect from the volume.</p>
+      </div>
+    </div>
+
+    <div class="note" data-en="Verify everything yourself. Read the tax split on <strong>Flap</strong> and the contract on <strong>BscScan</strong> before you buy. Numbers on this page describe the token as deployed, and the chain is always the source of truth." data-zh="所有内容请自行核实。买入前请在 <strong>Flap</strong> 查看税率分配，并在 <strong>BscScan</strong> 上查阅合约。本页数据描述的是已部署的代币，链上数据才是最终依据。">Verify everything yourself. Read the tax split on <strong>Flap</strong> and the contract on <strong>BscScan</strong> before you buy. Numbers on this page describe the token as deployed, and the chain is always the source of truth.</div>
+  </div>
+</section>
+
+<!-- REWARDS VAULT -->
+<section id="rewards">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="sec-tag label" data-en="Live on chain" data-zh="链上实时">Live on chain</p>
+      <h2 data-en="Watch the tax come back" data-zh="亲眼看着税收回流">Watch the tax come back</h2>
+      <p data-en="Dividends are paid in WBNB. Every payout below is a real transaction on BNB Chain, read live from the vault that holds the tax. Nothing here is typed by hand." data-zh="分红以 WBNB 发放。下方每一笔都是 BNB 链上的真实交易，实时读取自存放税收的金库，没有任何人工填写的数据。">Dividends are paid in WBNB. Every payout below is a real transaction on BNB Chain, read live from the vault that holds the tax. Nothing here is typed by hand.</p>
+    </div>
+
+    <div class="vault">
+      <div class="vault-head">
+        <span class="t label" data-en="Rewards vault" data-zh="奖励金库">Rewards vault</span>
+        <span class="vault-live label"><i class="dot" id="v-dot"></i><span id="v-status" data-en="Live" data-zh="实时">Live</span></span>
+      </div>
+
+      <div class="vault-stats">
+        <div class="vault-stat">
+          <p class="k label" data-en="In vault" data-zh="金库余额">In vault</p>
+          <p class="v" id="v-balance"><span class="skeleton"></span></p>
+          <p class="s" id="v-balance-sub" data-en="Awaiting distribution" data-zh="等待分配">Awaiting distribution</p>
+        </div>
+        <div class="vault-stat">
+          <p class="k label" data-en="Distributed" data-zh="已分配">Distributed</p>
+          <p class="v" id="v-total"><span class="skeleton"></span></p>
+          <p class="s" id="v-total-sub"><span class="skeleton"></span></p>
+        </div>
+      </div>
+
+      <div class="feed" id="v-feed">
+        <div class="feed-empty">
+          <b data-en="Reading the chain" data-zh="正在读取链上数据">Reading the chain</b>
+          <span data-en="Payouts appear here the moment they settle." data-zh="分红一旦结算，就会即时显示在这里。">Payouts appear here the moment they settle.</span>
+        </div>
+      </div>
+
+      <div class="vault-foot">
+        <span class="c label" id="v-count"></span>
+        <a href="https://bscscan.com/token/0x7f1863da34964f5d93dce0ac22eb6f558b0a7777" target="_blank" rel="noopener" data-en="Open BscScan ↗" data-zh="打开 BscScan ↗">Open BscScan ↗</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LINKS -->
+<section id="links">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="sec-tag label" data-en="Where to find it" data-zh="在哪里找到它">Where to find it</p>
+      <h2 data-en="Three doors, one number" data-zh="三个入口，一个数字">Three doors, one number</h2>
+    </div>
+    <div class="links">
+      <a class="link-card" href="https://flap.sh/bnb/0x7f1863da34964f5d93dce0ac22eb6f558b0a7777" target="_blank" rel="noopener">
+        <p class="lk label" data-en="Trade" data-zh="交易">Trade</p>
+        <p class="lv">Flap ↗</p>
+      </a>
+      <a class="link-card" href="https://bscscan.com/token/0x7f1863da34964f5d93dce0ac22eb6f558b0a7777" target="_blank" rel="noopener">
+        <p class="lk label" data-en="Verify" data-zh="核实">Verify</p>
+        <p class="lv">BscScan ↗</p>
+      </a>
+      <a class="link-card" href="https://x.com/8888cto" target="_blank" rel="noopener">
+        <p class="lk label" data-en="Community" data-zh="社区">Community</p>
+        <p class="lv">@8888cto ↗</p>
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p class="foot-8">發發發發</p>
+    <p data-en="$8888 is a memecoin on BNB Chain. It has no team, no roadmap and no promise of profit. It is a number people find lucky, on a blockchain." data-zh="$8888 是 BNB 链上的一枚 meme 币。没有团队，没有路线图，也不承诺任何收益。它只是一个人们认为吉利的数字，被放到了链上。">$8888 is a memecoin on BNB Chain. It has no team, no roadmap and no promise of profit. It is a number people find lucky, on a blockchain.</p>
+    <p data-en="Nothing here is financial advice. Crypto assets can lose all of their value. Do your own research." data-zh="本页内容不构成任何投资建议。加密资产可能归零。请自行研究判断。">Nothing here is financial advice. Crypto assets can lose all of their value. Do your own research.</p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  "use strict";
+
+  var nodes = document.querySelectorAll("[data-en]");
+  var btnEn = document.getElementById("btn-en");
+  var btnZh = document.getElementById("btn-zh");
+
+  function setLang(lang){
+    var key = lang === "zh" ? "data-zh" : "data-en";
+    for (var i = 0; i < nodes.length; i++){
+      var v = nodes[i].getAttribute(key);
+      if (v !== null) nodes[i].innerHTML = v;
+    }
+    document.documentElement.lang = (lang === "zh") ? "zh-Hans" : "en";
+    document.body.classList.toggle("zh", lang === "zh");
+    btnEn.classList.toggle("on", lang !== "zh");
+    btnZh.classList.toggle("on", lang === "zh");
+    btnEn.setAttribute("aria-pressed", String(lang !== "zh"));
+    btnZh.setAttribute("aria-pressed", String(lang === "zh"));
+    try { localStorage.setItem("lang8888", lang); } catch(e){}
+    document.dispatchEvent(new CustomEvent("langchange", { detail: lang }));
+  }
+
+  btnEn.addEventListener("click", function(){ setLang("en"); });
+  btnZh.addEventListener("click", function(){ setLang("zh"); });
+
+  var saved = null;
+  try { saved = localStorage.getItem("lang8888"); } catch(e){}
+  if (!saved && /^zh/i.test(navigator.language || "")) saved = "zh";
+  if (saved === "zh") setLang("zh");
+
+  var copyBtn = document.getElementById("copy-btn");
+  var caText = document.getElementById("ca-text").textContent.trim();
+
+  copyBtn.addEventListener("click", function(){
+    var done = function(){
+      var isZh = document.body.classList.contains("zh");
+      copyBtn.textContent = isZh ? "已复制" : "Copied";
+      setTimeout(function(){
+        copyBtn.textContent = document.body.classList.contains("zh") ? "复制" : "Copy";
+      }, 1600);
+    };
+    if (navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(caText).then(done, done);
+    } else {
+      var t = document.createElement("textarea");
+      t.value = caText; t.setAttribute("readonly","");
+      t.style.position = "absolute"; t.style.left = "-9999px";
+      document.body.appendChild(t); t.select();
+      try { document.execCommand("copy"); } catch(e){}
+      document.body.removeChild(t);
+      done();
+    }
+  });
+
+  /* ---------- hero eights: tap to flip, tap again to flip back ---------- */
+  var eights = document.querySelectorAll(".eights b");
+  var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var autoTimer = null;
+
+  function handle(el){
+    return function(ev){
+      ev.preventDefault();
+      el.classList.remove("auto");
+      el.classList.add("locked");
+      el.classList.toggle("flip");
+      el.blur();
+    };
+  }
+
+  for (var j = 0; j < eights.length; j++){
+    var e = eights[j];
+    e.setAttribute("role", "button");
+    e.setAttribute("tabindex", "0");
+    e.addEventListener("click", handle(e));
+    (function(el){
+      el.addEventListener("keydown", function(ev){
+        if (ev.key === "Enter" || ev.key === " "){ handle(el)(ev); }
+      });
+    })(e);
+  }
+
+  /* the idle loop only touches eights nobody has tapped yet */
+  if (!reduce && eights.length){
+    var idx = 0;
+    autoTimer = setInterval(function(){
+      var free = [];
+      for (var k = 0; k < eights.length; k++){
+        if (!eights[k].classList.contains("locked")) free.push(eights[k]);
+      }
+      if (!free.length){ clearInterval(autoTimer); return; }
+      var el = free[idx % free.length];
+      idx++;
+      el.classList.add("flip", "auto");
+      setTimeout(function(){
+        if (el.classList.contains("auto")){ el.classList.remove("flip", "auto"); }
+      }, 1100);
+    }, 2600);
+  }
+
+})();
+</script>
+
+<script>
+/* ================= LIVE REWARDS VAULT =================
+   Reads BNB Chain directly from the browser. No server.
+
+   $8888 pays dividends in WBNB, so the vault balance and every payout
+   below are read from the WBNB contract, filtered to transfers leaving
+   the vault.
+
+   VAULT is auto discovered from the token contract. Paste a known
+   address in to skip that step. An Etherscan V2 key (free, covers BSC
+   with chainid=56) unlocks full payout history; without one the widget
+   scans recent blocks over public RPC instead.
+======================================================== */
+(function(){
+  "use strict";
+
+  var CFG = {
+    TOKEN: "0x7f1863da34964f5d93dce0ac22eb6f558b0a7777",
+    WBNB: "0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c",
+    VAULT: "",                        // leave blank to auto discover
+    ETHERSCAN_KEY: "7N4KE7F9Q45WVW3D8KNSUMU7JD95M438J4",  // public by design, read only, rate limited
+    RPCS: [
+      "https://bsc-dataseed.bnbchain.org",
+      "https://bsc-dataseed1.defibit.io",
+      "https://rpc.ankr.com/bsc",
+      "https://binance.llamarpc.com"
+    ],
+    POLL_MS: 25000,
+    MAX_ROWS: 25,
+    FALLBACK_BLOCKS: 4800             // roughly the last hour of BSC blocks
+  };
+
+  var TRANSFER_TOPIC = "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef";
+  var SELECTORS = ["0x2c1f5216","0x0ff8cf9b","0x35d97405","0xfbfa77cf","0xe2ad37b0","0xe6ef73d6","0x38af3eed","0xb3f00674"];
+  var SYMBOL = "BNB";
+
+  var els = {
+    dot:      document.getElementById("v-dot"),
+    status:   document.getElementById("v-status"),
+    balance:  document.getElementById("v-balance"),
+    balSub:   document.getElementById("v-balance-sub"),
+    total:    document.getElementById("v-total"),
+    totalSub: document.getElementById("v-total-sub"),
+    feed:     document.getElementById("v-feed"),
+    count:    document.getElementById("v-count")
+  };
+  if (!els.feed) return;
+
+  var state = { rows: [], distributed: 0, vaultBal: 0, bnbUsd: 0, vault: "", live: false };
+
+  function isZh(){ return document.body.classList.contains("zh"); }
+  function t(en, zh){ return isZh() ? zh : en; }
+
+  /* ---------- rpc ---------- */
+  var rpcIdx = 0, rpcId = 1;
+  function rpc(method, params){
+    var url = CFG.RPCS[rpcIdx % CFG.RPCS.length];
+    return fetch(url, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ jsonrpc: "2.0", id: rpcId++, method: method, params: params || [] })
+    }).then(function(r){ return r.json(); }).then(function(j){
+      if (j.error) throw new Error(j.error.message);
+      return j.result;
+    }).catch(function(err){
+      rpcIdx++;
+      if (rpcIdx < CFG.RPCS.length * 2) return rpc(method, params);
+      throw err;
+    });
+  }
+  function call(to, data){ return rpc("eth_call", [{ to: to, data: data }, "latest"]); }
+
+  function toBnb(hex){
+    var s = (hex || "0x0").replace(/^0x/, "").replace(/^0+/, "") || "0";
+    return parseInt(s, 16) / 1e18;
+  }
+  function addrFromWord(w){ return "0x" + (w || "").replace(/^0x/, "").slice(-40); }
+  function shorten(a){ return a.slice(0, 6) + "\u2026" + a.slice(-4); }
+  function isZero(a){ return !a || /^0x0{40}$/i.test(a); }
+  function pad(a){ return "000000000000000000000000" + a.replace(/^0x/, "").toLowerCase(); }
+
+  function fmtBnb(n){
+    if (!n) return "0";
+    if (n >= 1000) return (n / 1000).toFixed(2) + "K";
+    if (n >= 1) return n.toFixed(4);
+    return n.toFixed(9).replace(/0+$/, "").replace(/\.$/, "");
+  }
+  function fmtUsd(n){
+    if (!n) return "";
+    if (n >= 1000000) return "$" + (n / 1000000).toFixed(2) + "M";
+    if (n >= 1000) return "$" + (n / 1000).toFixed(2) + "K";
+    if (n >= 1) return "$" + n.toFixed(2);
+    return "$" + n.toFixed(4);
+  }
+  function ago(sec){
+    var d = Math.max(0, Math.floor(Date.now() / 1000) - sec);
+    if (d < 60) return t("just now", "刚刚");
+    var m = Math.floor(d / 60);
+    if (m < 60) return isZh() ? m + " 分钟前" : m + (m === 1 ? " minute ago" : " minutes ago");
+    var h = Math.floor(m / 60);
+    if (h < 24) return isZh() ? h + " 小时前" : h + (h === 1 ? " hour ago" : " hours ago");
+    var dy = Math.floor(h / 24);
+    return isZh() ? dy + " 天前" : dy + (dy === 1 ? " day ago" : " days ago");
+  }
+
+  /* ---------- discovery ---------- */
+  function findVault(){
+    if (CFG.VAULT) return Promise.resolve(CFG.VAULT);
+    var i = 0;
+    function next(){
+      if (i >= SELECTORS.length) return Promise.resolve("");
+      var sel = SELECTORS[i++];
+      return call(CFG.TOKEN, sel).then(function(res){
+        var a = addrFromWord(res);
+        return (!isZero(a) && a.length === 42) ? a : next();
+      }).catch(next);
+    }
+    return next();
+  }
+
+  /* BNB price comes free from the $8888 pair: priceUsd / priceNative */
+  function loadBnbPrice(){
+    return fetch("https://api.dexscreener.com/latest/dex/tokens/" + CFG.TOKEN)
+      .then(function(r){ return r.json(); })
+      .then(function(j){
+        var pairs = (j && j.pairs) || [];
+        pairs.sort(function(a, b){ return (b.liquidity && b.liquidity.usd || 0) - (a.liquidity && a.liquidity.usd || 0); });
+        for (var i = 0; i < pairs.length; i++){
+          var p = pairs[i];
+          var native = parseFloat(p.priceNative), usd = parseFloat(p.priceUsd);
+          if (native > 0 && usd > 0 && p.quoteToken && /^W?BNB$/i.test(p.quoteToken.symbol)){
+            state.bnbUsd = usd / native;
+            return;
+          }
+        }
+      }).catch(function(){});
+  }
+
+  /* ---------- vault holdings: WBNB plus any unwrapped BNB ---------- */
+  function loadBalance(){
+    if (!state.vault) return Promise.resolve();
+    return Promise.all([
+      call(CFG.WBNB, "0x70a08231" + pad(state.vault)).then(toBnb).catch(function(){ return 0; }),
+      rpc("eth_getBalance", [state.vault, "latest"]).then(toBnb).catch(function(){ return 0; })
+    ]).then(function(v){ state.vaultBal = v[0] + v[1]; });
+  }
+
+  /* ---------- payout feed: WBNB leaving the vault ---------- */
+  function loadFeedFromApi(){
+    var url = "https://api.etherscan.io/v2/api?chainid=56&module=account&action=tokentx"
+            + "&contractaddress=" + CFG.WBNB
+            + "&address=" + state.vault
+            + "&page=1&offset=1000&sort=desc&apikey=" + CFG.ETHERSCAN_KEY;
+    return fetch(url).then(function(r){ return r.json(); }).then(function(j){
+      if (j.status !== "1" || !Array.isArray(j.result)) throw new Error(j.message || "no data");
+      var out = [], total = 0;
+      for (var i = 0; i < j.result.length; i++){
+        var tx = j.result[i];
+        if (tx.from.toLowerCase() !== state.vault.toLowerCase()) continue;
+        var amt = parseFloat(tx.value) / 1e18;
+        total += amt;
+        if (out.length < CFG.MAX_ROWS){
+          out.push({ to: tx.to, amount: amt, time: parseInt(tx.timeStamp, 10), hash: tx.hash });
+        }
+      }
+      state.rows = out;
+      state.distributed = total;
+      state.allTime = true;
+    });
+  }
+
+  function loadFeedFromRpc(){
+    var head;
+    return rpc("eth_blockNumber").then(function(bn){
+      head = parseInt(bn, 16);
+      return rpc("eth_getLogs", [{
+        address: CFG.WBNB,
+        fromBlock: "0x" + Math.max(0, head - CFG.FALLBACK_BLOCKS).toString(16),
+        toBlock: "latest",
+        topics: [TRANSFER_TOPIC, "0x" + pad(state.vault)]
+      }]);
+    }).then(function(logs){
+      if (!Array.isArray(logs)) throw new Error("no logs");
+      logs.reverse();
+      var out = [], total = 0, now = Math.floor(Date.now() / 1000);
+      for (var i = 0; i < logs.length; i++){
+        var amt = toBnb(logs[i].data);
+        total += amt;
+        if (out.length < CFG.MAX_ROWS){
+          out.push({
+            to: addrFromWord(logs[i].topics[2]),
+            amount: amt,
+            /* BSC blocks land about every 0.75s, close enough for a relative label */
+            time: now - Math.round((head - parseInt(logs[i].blockNumber, 16)) * 0.75),
+            hash: logs[i].transactionHash
+          });
+        }
+      }
+      state.rows = out;
+      state.distributed = total;
+      state.allTime = false;
+    });
+  }
+
+  function loadFeed(){
+    return CFG.ETHERSCAN_KEY ? loadFeedFromApi().catch(loadFeedFromRpc) : loadFeedFromRpc();
+  }
+
+  /* ---------- render ---------- */
+  function render(){
+    els.dot.className = "dot" + (state.live ? "" : " off");
+    els.status.textContent = state.live ? t("Live", "实时") : t("Reconnecting", "重新连接中");
+
+    els.balance.textContent = fmtBnb(state.vaultBal) + " " + SYMBOL;
+    els.balSub.textContent = state.bnbUsd
+      ? t("Awaiting distribution · ", "等待分配 · ") + fmtUsd(state.vaultBal * state.bnbUsd)
+      : t("Awaiting distribution", "等待分配");
+
+    els.total.textContent = fmtBnb(state.distributed) + " " + SYMBOL;
+    var scope = state.allTime ? t("All time", "累计") : t("Last hour", "最近一小时");
+    els.totalSub.textContent = state.bnbUsd
+      ? scope + " · " + fmtUsd(state.distributed * state.bnbUsd)
+      : scope;
+
+    if (!state.rows.length){
+      els.feed.innerHTML = '<div class="feed-empty"><b>'
+        + t("No payouts yet", "暂无分红记录") + "</b><span>"
+        + t("The vault fills with WBNB as trades happen, then pays out to holders.", "金库随交易累积 WBNB，随后向持有者分发。")
+        + "</span></div>";
+      els.count.textContent = "";
+      return;
+    }
+
+    var html = "";
+    for (var i = 0; i < state.rows.length; i++){
+      var r = state.rows[i];
+      var usd = state.bnbUsd ? fmtUsd(r.amount * state.bnbUsd) : "";
+      html += '<a class="row" href="https://bscscan.com/tx/' + r.hash + '" target="_blank" rel="noopener" style="text-decoration:none">'
+            +   '<span class="addr">' + shorten(r.to) + "</span>"
+            +   '<span class="amt">+' + fmtBnb(r.amount) + " " + SYMBOL + "</span>"
+            +   '<span class="when">' + ago(r.time) + " · " + t("Vault payout", "金库分红")
+            +     (usd ? '<span class="usd">' + usd + "</span>" : "")
+            +   "</span>"
+            + "</a>";
+    }
+    els.feed.innerHTML = html;
+    els.count.textContent = state.rows.length + " " + t("loaded · scroll for more", "条已加载 · 下滑查看更多");
+  }
+
+  function blank(title, body, status){
+    state.live = false;
+    els.dot.className = "dot off";
+    els.status.textContent = status;
+    els.balance.textContent = "\u2026";
+    els.total.textContent = "\u2026";
+    els.totalSub.textContent = "";
+    els.count.textContent = "";
+    els.feed.innerHTML = '<div class="feed-empty"><b>' + title + "</b><span>" + body + "</span></div>";
+  }
+
+  /* ---------- boot ---------- */
+  function refresh(){
+    return Promise.all([loadBalance(), loadFeed()]).then(function(){
+      state.live = true;
+      render();
+    }).catch(function(){
+      state.live = false;
+      render();
+    });
+  }
+
+  function boot(){
+    loadBnbPrice().then(findVault).then(function(v){
+      if (!v){
+        return blank(
+          t("Vault address not found automatically", "未能自动识别金库地址"),
+          t("Paste it into CFG.VAULT near the bottom of this file and the feed goes live.", "请将地址填入本文件底部的 CFG.VAULT，分红列表即会启用。"),
+          t("Not configured", "未配置")
+        );
+      }
+      state.vault = v;
+      return refresh().then(function(){ setInterval(refresh, CFG.POLL_MS); });
+    }).catch(function(){
+      blank(
+        t("Cannot reach BNB Chain right now", "暂时无法连接 BNB 链"),
+        t("Check the contract on BscScan instead. This panel retries on its own.", "可先在 BscScan 上查看合约，本面板会自动重试。"),
+        t("Offline", "离线")
+      );
+    });
+  }
+
+  var section = document.getElementById("rewards");
+  if ("IntersectionObserver" in window && section){
+    var io = new IntersectionObserver(function(entries){
+      if (entries[0].isIntersecting){ io.disconnect(); boot(); }
+    }, { rootMargin: "300px" });
+    io.observe(section);
+  } else {
+    boot();
+  }
+
+  document.addEventListener("langchange", function(){ if (state.vault) render(); });
+})();
+</script>
+</body>
+</html>
