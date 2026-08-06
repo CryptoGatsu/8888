@@ -5,14 +5,16 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>$8888 Lucky Number · 發發發發</title>
 <meta name="description" content="8888 is the luckiest number in Chinese culture. $8888 on BNB Chain: 3% / 3% tax, paid straight back to holders in the same transaction.">
+<link rel="canonical" href="https://8888cto.com/">
+<meta property="og:url" content="https://8888cto.com/">
 <meta property="og:site_name" content="$8888 Lucky Number">
 <meta property="og:title" content="$8888 Lucky Number">
 <meta property="og:description" content="Four eights. Four fortunes. 3% in, 3% out, paid straight back to holders in WBNB on BNB Chain.">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="en_US">
 <meta property="og:locale:alternate" content="zh_CN">
-<meta property="og:image" content="/og.jpg">
-<meta property="og:image:secure_url" content="/og.jpg">
+<meta property="og:image" content="https://8888cto.com/og.jpg">
+<meta property="og:image:secure_url" content="https://8888cto.com/og.jpg">
 <meta property="og:image:type" content="image/jpeg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -20,7 +22,7 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="$8888 Lucky Number">
 <meta name="twitter:description" content="Four eights. Four fortunes. 3% in, 3% out, paid straight back to holders in WBNB on BNB Chain.">
-<meta name="twitter:image" content="/og.jpg">
+<meta name="twitter:image" content="https://8888cto.com/og.jpg">
 <meta name="twitter:image:alt" content="Gold 8888 on black, with a note that eight sounds like the word for fortune in Chinese">
 <meta name="twitter:site" content="@8888cto">
 <meta name="twitter:creator" content="@8888cto">
@@ -809,10 +811,13 @@ footer p + p{margin-top:12px}
     VAULT: "",                        // resolved from the token contract, see findVault()
     ETHERSCAN_KEY: "7N4KE7F9Q45WVW3D8KNSUMU7JD95M438J4",  // public by design, read only, rate limited
     RPCS: [
+      "https://bsc-rpc.publicnode.com",
+      "https://bsc.drpc.org",
+      "https://binance.llamarpc.com",
+      "https://bsc-mainnet.public.blastapi.io",
+      "https://1rpc.io/bnb",
       "https://bsc-dataseed.bnbchain.org",
-      "https://bsc-dataseed1.defibit.io",
-      "https://rpc.ankr.com/bsc",
-      "https://binance.llamarpc.com"
+      "https://bsc-dataseed1.defibit.io"
     ],
     POLL_MS: 25000,
     MAX_ROWS: 25,
@@ -848,26 +853,54 @@ footer p + p{margin-top:12px}
   if (!els.feed) return;
 
   var state = { rows: [], distributed: 0, vaultBal: 0, bnbUsd: 0, vault: "", live: false };
+  var lastErr = "";
+  var DEBUG = /[?&]debug/.test(location.search);
 
   function isZh(){ return document.body.classList.contains("zh"); }
   function t(en, zh){ return isZh() ? zh : en; }
 
   /* ---------- rpc ---------- */
   var rpcIdx = 0, rpcId = 1;
-  function rpc(method, params){
-    var url = CFG.RPCS[rpcIdx % CFG.RPCS.length];
-    return fetch(url, {
+
+  /* try every endpoint once per call, then stick to whichever answered.
+     the attempt count is per call, so a bad run never disables later ones */
+  function rpc(method, params, attempt){
+    attempt = attempt || 0;
+    var i = (rpcIdx + attempt) % CFG.RPCS.length;
+    return fetch(CFG.RPCS[i], {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ jsonrpc: "2.0", id: rpcId++, method: method, params: params || [] })
     }).then(function(r){ return r.json(); }).then(function(j){
-      if (j.error) throw new Error(j.error.message);
+      if (j.error) throw new Error(j.error.message || "rpc error");
+      rpcIdx = i;
       return j.result;
     }).catch(function(err){
-      rpcIdx++;
-      if (rpcIdx < CFG.RPCS.length * 2) return rpc(method, params);
+      if (attempt + 1 < CFG.RPCS.length) return rpc(method, params, attempt + 1);
       throw err;
     });
+  }
+
+  /* getLogs is the fussiest call: nodes disagree on range and result caps,
+     so ask each endpoint directly rather than reusing the sticky one */
+  function getLogsAnywhere(filter){
+    var i = 0;
+    function attempt(){
+      if (i >= CFG.RPCS.length) return Promise.resolve(null);
+      var url = CFG.RPCS[i++];
+      return fetch(url, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ jsonrpc: "2.0", id: rpcId++, method: "eth_getLogs", params: [filter] })
+      }).then(function(r){ return r.json(); }).then(function(j){
+        if (j.error || !Array.isArray(j.result)){
+          lastErr = "getLogs " + url.replace(/^https?:\/\//, "") + ": " + ((j.error && j.error.message) || "no result");
+          return attempt();
+        }
+        return j.result;
+      }).catch(function(){ return attempt(); });
+    }
+    return attempt();
   }
   function call(to, data){ return rpc("eth_call", [{ to: to, data: data }, "latest"]); }
 
@@ -990,7 +1023,8 @@ footer p + p{margin-top:12px}
         if (/no transactions found/i.test(msg)){
           state.rows = []; state.allTime = true; state.feedOk = true; return;
         }
-        console.warn("[8888 vault] Etherscan:", msg.trim());
+        lastErr = "Etherscan: " + msg.trim();
+        console.warn("[8888 vault]", lastErr);
         throw new Error(msg);
       }
       var out = [], total = 0;
@@ -1011,33 +1045,38 @@ footer p + p{margin-top:12px}
   }
 
   function loadFeedFromRpc(){
-    var head;
-    var spans = [CFG.FALLBACK_BLOCKS, 2000, 800, 200];
+    var topicVault = "0x" + pad(state.vault);
 
     return rpc("eth_blockNumber").then(function(bn){
-      head = parseInt(bn, 16);
+      var head = parseInt(bn, 16);
+      var windows = [400, 1500, 5000, 20000];
       var i = 0;
-      /* public BSC nodes cap eth_getLogs ranges and disagree on the limit,
-         so walk down until one of them answers */
+
+      /* widen the window until something turns up, since a quiet token can
+         go a while between payouts */
       function attempt(){
-        if (i >= spans.length) return Promise.resolve(null);
-        var span = spans[i++];
-        return rpc("eth_getLogs", [{
+        if (i >= windows.length) return Promise.resolve({ logs: null, head: head });
+        var span = windows[i++];
+        return getLogsAnywhere({
           address: CFG.WBNB,
           fromBlock: "0x" + Math.max(0, head - span).toString(16),
           toBlock: "latest",
-          topics: [TRANSFER_TOPIC, "0x" + pad(state.vault)]
-        }]).then(function(r){ return Array.isArray(r) ? r : attempt(); })
-          .catch(function(){ return attempt(); });
+          topics: [TRANSFER_TOPIC, topicVault]
+        }).then(function(logs){
+          if (logs && logs.length) return { logs: logs, head: head };
+          if (logs && i < windows.length) return attempt();
+          return { logs: logs, head: head };
+        });
       }
       return attempt();
-    }).then(function(logs){
-      if (!logs){
-        console.warn("[8888 vault] no RPC would serve eth_getLogs; showing totals only");
+    }).then(function(res){
+      if (!res.logs){
         state.rows = [];
         state.feedOk = false;
+        console.warn("[8888 vault] no endpoint served eth_getLogs.", lastErr);
         return;
       }
+      var logs = res.logs.slice();
       logs.reverse();
       var out = [], total = 0, now = Math.floor(Date.now() / 1000);
       for (var i = 0; i < logs.length; i++){
@@ -1048,7 +1087,7 @@ footer p + p{margin-top:12px}
             to: addrFromWord(logs[i].topics[2]),
             amount: amt,
             /* BSC blocks land about every 0.75s, close enough for a relative label */
-            time: now - Math.round((head - parseInt(logs[i].blockNumber, 16)) * 0.75),
+            time: now - Math.round((res.head - parseInt(logs[i].blockNumber, 16)) * 0.75),
             hash: logs[i].transactionHash
           });
         }
@@ -1091,7 +1130,9 @@ footer p + p{margin-top:12px}
       var body = state.feedOk
         ? t("The vault fills with WBNB as trades happen, then pays out to holders.", "金库随交易累积 WBNB，随后向持有者分发。")
         : t("Totals above are still live. Full history is on BscScan.", "上方数据仍为实时。完整记录可在 BscScan 查看。");
-      els.feed.innerHTML = '<div class="feed-empty"><b>' + head + "</b><span>" + body + "</span></div>";
+      els.feed.innerHTML = '<div class="feed-empty"><b>' + head + "</b><span>" + body
+        + (DEBUG && lastErr ? '</span><span style="display:block;margin-top:10px;font-family:var(--mono);font-size:12px;color:var(--mute)">' + lastErr : "")
+        + "</span></div>";
       els.count.textContent = "";
       return;
     }
