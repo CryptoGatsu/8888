@@ -806,7 +806,7 @@ footer p + p{margin-top:12px}
   var CFG = {
     TOKEN: "0x7f1863da34964f5d93dce0ac22eb6f558b0a7777",
     WBNB: "0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c",
-    VAULT: "0x799E39644F207baf37185479E0C23D0e5eD11DcC",  // verified at runtime, falls back to auto discovery
+    VAULT: "",                        // resolved from the token contract, see findVault()
     ETHERSCAN_KEY: "7N4KE7F9Q45WVW3D8KNSUMU7JD95M438J4",  // public by design, read only, rate limited
     RPCS: [
       "https://bsc-dataseed.bnbchain.org",
@@ -820,8 +820,20 @@ footer p + p{margin-top:12px}
   };
 
   var TRANSFER_TOPIC = "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef";
-  var SELECTORS = ["0x2c1f5216","0x0ff8cf9b","0x35d97405","0xfbfa77cf","0xe2ad37b0","0xe6ef73d6","0x38af3eed","0xb3f00674"];
   var SYMBOL = "BNB";
+
+  /* Flap tax token V3 exposes the per-token Dividend contract directly.
+     dividendContract() is the documented getter; taxProcessor().dividendAddress()
+     resolves to the same address and covers older deployments. The rest are
+     legacy names kept as a long shot. */
+  var SEL = {
+    dividendContract: "0x6124e4e7",
+    taxProcessor:     "0xf3635019",
+    dividendAddress:  "0x546d08fe",
+    totals:           ["0x85a6b3ae", "0x30bb4cff", "0xefca2eed"],
+    minShare:         "0x7eb0ac5f",
+    legacy:           ["0x2c1f5216", "0x0ff8cf9b", "0x35d97405", "0xfbfa77cf", "0xe2ad37b0"]
+  };
 
   var els = {
     dot:      document.getElementById("v-dot"),
@@ -895,16 +907,31 @@ footer p + p{margin-top:12px}
   /* ---------- discovery ---------- */
   function findVault(){
     if (CFG.VAULT) return Promise.resolve(CFG.VAULT);
-    var i = 0;
-    function next(){
-      if (i >= SELECTORS.length) return Promise.resolve("");
-      var sel = SELECTORS[i++];
-      return call(CFG.TOKEN, sel).then(function(res){
-        var a = addrFromWord(res);
-        return (!isZero(a) && a.length === 42) ? a : next();
-      }).catch(next);
+
+    function tryCall(to, sel){
+      return call(to, sel).then(function(r){
+        var a = addrFromWord(r);
+        return (!isZero(a) && a.length === 42) ? a : "";
+      }).catch(function(){ return ""; });
     }
-    return next();
+
+    /* 1. the documented getter */
+    return tryCall(CFG.TOKEN, SEL.dividendContract).then(function(a){
+      if (a) return a;
+      /* 2. through the tax processor */
+      return tryCall(CFG.TOKEN, SEL.taxProcessor).then(function(proc){
+        return proc ? tryCall(proc, SEL.dividendAddress) : "";
+      });
+    }).then(function(a){
+      if (a) return a;
+      /* 3. legacy names */
+      var i = 0;
+      function next(){
+        if (i >= SEL.legacy.length) return Promise.resolve("");
+        return tryCall(CFG.TOKEN, SEL.legacy[i++]).then(function(x){ return x || next(); });
+      }
+      return next();
+    });
   }
 
   /* BNB price comes free from the $8888 pair: priceUsd / priceNative */
@@ -937,10 +964,16 @@ footer p + p{margin-top:12px}
   /* the dividend contract tracks its own lifetime total, which beats summing logs */
   function loadTotalDistributed(){
     if (!state.vault) return Promise.resolve();
-    return call(state.vault, "0x30bb4cff").then(function(r){
-      var n = toBnb(r);
-      if (n > 0){ state.reportedTotal = n; }
-    }).catch(function(){});
+    var i = 0;
+    function next(){
+      if (i >= SEL.totals.length) return Promise.resolve();
+      return call(state.vault, SEL.totals[i++]).then(function(r){
+        var n = toBnb(r);
+        if (n > 0){ state.reportedTotal = n; return; }
+        return next();
+      }).catch(next);
+    }
+    return next();
   }
 
   /* ---------- payout feed: WBNB leaving the vault ---------- */
@@ -1078,19 +1111,7 @@ footer p + p{margin-top:12px}
         );
       }
       state.vault = v;
-      return refresh().then(function(){
-        /* if the configured address shows no dividend activity, it is the wrong
-           contract, so fall back to reading the vault off the token itself */
-        if (CFG.VAULT && !state.reportedTotal && !state.rows.length && !state.vaultBal){
-          CFG.VAULT = "";
-          return findVault().then(function(v2){
-            if (v2 && v2.toLowerCase() !== state.vault.toLowerCase()){
-              state.vault = v2;
-              return refresh();
-            }
-          });
-        }
-      }).then(function(){ setInterval(refresh, CFG.POLL_MS); });
+      return refresh().then(function(){ setInterval(refresh, CFG.POLL_MS); });
     }).catch(function(){
       blank(
         t("Cannot reach BNB Chain right now", "暂时无法连接 BNB 链"),
