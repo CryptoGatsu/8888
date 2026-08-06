@@ -185,6 +185,34 @@ body.zh .hero h1 em{font-style:normal}
 .copy:hover{border-color:var(--gold);background:rgba(240,185,11,.09)}
 .copy:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
 
+/* ---------- market strip ---------- */
+.market-sec{padding:clamp(30px,5vw,44px) 0;border-top:1px solid var(--line)}
+.market{
+  border:1px solid var(--line);border-radius:14px;background:var(--ink-2);overflow:hidden;
+}
+.market-grid{display:grid;gap:1px;background:var(--line)}
+@media(min-width:520px){.market-grid{grid-template-columns:1fr 1fr}}
+@media(min-width:900px){.market-grid{grid-template-columns:repeat(4,1fr)}}
+.mk{background:var(--ink-2);padding:18px 20px}
+.mk .k{color:var(--mute);margin:0 0 9px;display:flex;align-items:center;gap:7px}
+.mk .v{
+  font-family:var(--display);font-weight:800;letter-spacing:-.025em;
+  font-size:clamp(22px,3vw,28px);color:#FFFFFF;line-height:1.1;margin:0;
+}
+.mk.gold .v{color:var(--gold)}
+.mk .s{margin:7px 0 0;font-size:13px;color:var(--mute)}
+.chg{font-family:var(--mono);font-size:12px;font-weight:500}
+.chg.up{color:#5FD08A}
+.chg.down{color:#E5657A}
+
+.market-cta{
+  display:flex;align-items:center;gap:12px;flex-wrap:wrap;
+  padding:16px 20px;border-top:1px solid var(--line);
+}
+.market-cta .note-sm{color:var(--mute);font-size:13px;margin:0}
+.market-cta .btn{margin-left:auto}
+@media(max-width:520px){.market-cta .btn{margin-left:0;width:100%}}
+
 /* ---------- section frame ---------- */
 section{padding:clamp(58px,9vw,108px) 0;border-top:1px solid var(--line)}
 .sec-head{margin-bottom:clamp(30px,5vw,50px);max-width:62ch}
@@ -388,7 +416,7 @@ footer p + p{margin-top:12px}
       <button type="button" id="btn-en" class="on" aria-pressed="true">EN</button>
       <button type="button" id="btn-zh" aria-pressed="false">中文</button>
     </div>
-    <a class="btn" href="https://flap.sh/bnb/0x7f1863da34964f5d93dce0ac22eb6f558b0a7777" target="_blank" rel="noopener" data-en="Buy $8888" data-zh="购买 $8888">Buy $8888</a>
+    <a class="btn" href="https://pancakeswap.finance/swap?inputCurrency=BNB&amp;outputCurrency=0x7f1863da34964f5d93dce0ac22eb6f558b0a7777" target="_blank" rel="noopener" data-en="Buy $8888" data-zh="购买 $8888">Buy $8888</a>
   </div>
 </nav>
 
@@ -403,7 +431,8 @@ footer p + p{margin-top:12px}
     <p class="lede" data-en="In Chinese, eight (bā) sounds like fā, the word for prosper. Stack four of them together and you get the most requested number in the world: 8888." data-zh="在中文里，「八」的发音接近「发」，也就是发财的发。四个八叠在一起，就成了全世界最抢手的数字：8888。">In Chinese, eight (bā) sounds like fā, the word for prosper. Stack four of them together and you get the most requested number in the world: 8888.</p>
 
     <div class="cta-row">
-      <a class="btn" href="https://flap.sh/bnb/0x7f1863da34964f5d93dce0ac22eb6f558b0a7777" target="_blank" rel="noopener" data-en="Buy on Flap" data-zh="在 Flap 购买">Buy on Flap</a>
+      <a class="btn" href="https://pancakeswap.finance/swap?inputCurrency=BNB&amp;outputCurrency=0x7f1863da34964f5d93dce0ac22eb6f558b0a7777" target="_blank" rel="noopener" data-en="Buy on PancakeSwap" data-zh="在 PancakeSwap 购买">Buy on PancakeSwap</a>
+      <a class="btn ghost" href="https://flap.sh/bnb/0x7f1863da34964f5d93dce0ac22eb6f558b0a7777" target="_blank" rel="noopener" data-en="Trade on Flap" data-zh="在 Flap 交易">Trade on Flap</a>
       <a class="btn ghost" href="https://x.com/8888cto" target="_blank" rel="noopener" data-en="Follow @8888cto" data-zh="关注 @8888cto">Follow @8888cto</a>
     </div>
 
@@ -414,6 +443,40 @@ footer p + p{margin-top:12px}
     </div>
   </div>
 </header>
+
+<!-- MARKET -->
+<section class="market-sec" id="market">
+  <div class="wrap">
+    <div class="market">
+      <div class="market-grid">
+        <div class="mk">
+          <p class="k label" data-en="Price" data-zh="价格">Price</p>
+          <p class="v" id="mk-price"><span class="skeleton"></span></p>
+          <p class="s"><span class="chg" id="mk-chg"></span></p>
+        </div>
+        <div class="mk gold">
+          <p class="k label" data-en="Market cap" data-zh="市值">Market cap</p>
+          <p class="v" id="mk-mcap"><span class="skeleton"></span></p>
+          <p class="s" id="mk-supply" data-en="1B supply, fixed" data-zh="10 亿固定供应">1B supply, fixed</p>
+        </div>
+        <div class="mk">
+          <p class="k label" data-en="All time high" data-zh="历史最高">All time high</p>
+          <p class="v" id="mk-ath"><span class="skeleton"></span></p>
+          <p class="s" id="mk-ath-sub" data-en="Peak market cap" data-zh="市值峰值">Peak market cap</p>
+        </div>
+        <div class="mk">
+          <p class="k label" data-en="24h volume" data-zh="24 小时成交量">24h volume</p>
+          <p class="v" id="mk-vol"><span class="skeleton"></span></p>
+          <p class="s" id="mk-fees" data-en="Feeding the vault" data-zh="持续注入金库">Feeding the vault</p>
+        </div>
+      </div>
+      <div class="market-cta">
+        <p class="note-sm" data-en="Set slippage to at least 5% to clear the 3% tax." data-zh="滑点请设为 5% 以上，以覆盖 3% 的税。">Set slippage to at least 5% to clear the 3% tax.</p>
+        <a class="btn" id="mk-buy" href="https://pancakeswap.finance/swap?inputCurrency=BNB&amp;outputCurrency=0x7f1863da34964f5d93dce0ac22eb6f558b0a7777" target="_blank" rel="noopener" data-en="Buy $8888 on PancakeSwap" data-zh="在 PancakeSwap 购买 $8888">Buy $8888 on PancakeSwap</a>
+      </div>
+    </div>
+  </div>
+</section>
 
 <!-- THE SOUND -->
 <section id="meaning">
@@ -654,7 +717,7 @@ footer p + p{margin-top:12px}
     </div>
     <div class="links">
       <a class="link-card" href="https://flap.sh/bnb/0x7f1863da34964f5d93dce0ac22eb6f558b0a7777" target="_blank" rel="noopener">
-        <p class="lk label" data-en="Trade" data-zh="交易">Trade</p>
+        <p class="lk label" data-en="Claim dividends" data-zh="领取分红">Claim dividends</p>
         <p class="lv">Flap ↗</p>
       </a>
       <a class="link-card" href="https://bscscan.com/token/0x7f1863da34964f5d93dce0ac22eb6f558b0a7777" target="_blank" rel="noopener">
@@ -1215,6 +1278,150 @@ footer p + p{margin-top:12px}
   }
 
   document.addEventListener("langchange", function(){ if (state.vault) render(); });
+})();
+</script>
+
+<script>
+/* ================= LIVE MARKET STRIP =================
+   Price, market cap, all time high and 24h volume.
+   DexScreener covers the live figures. The all time high comes from
+   GeckoTerminal daily candles for the same pool, since DexScreener does
+   not expose a peak.
+===================================================== */
+(function(){
+  "use strict";
+
+  var TOKEN = "0x7f1863da34964f5d93dce0ac22eb6f558b0a7777";
+  var POLL_MS = 30000;
+
+  var el = {
+    price:  document.getElementById("mk-price"),
+    chg:    document.getElementById("mk-chg"),
+    mcap:   document.getElementById("mk-mcap"),
+    ath:    document.getElementById("mk-ath"),
+    athSub: document.getElementById("mk-ath-sub"),
+    vol:    document.getElementById("mk-vol"),
+    fees:   document.getElementById("mk-fees"),
+    buy:    document.getElementById("mk-buy")
+  };
+  if (!el.price) return;
+
+  var m = { price: 0, mcap: 0, vol: 0, chg: null, ath: 0, athDate: 0, pair: "", supply: 0 };
+
+  function isZh(){ return document.body.classList.contains("zh"); }
+  function t(en, zh){ return isZh() ? zh : en; }
+
+  function usd(n){
+    if (!n && n !== 0) return "\u2026";
+    if (n >= 1e9) return "$" + (n / 1e9).toFixed(2) + "B";
+    if (n >= 1e6) return "$" + (n / 1e6).toFixed(2) + "M";
+    if (n >= 1e3) return "$" + (n / 1e3).toFixed(1) + "K";
+    if (n >= 1)   return "$" + n.toFixed(2);
+    if (n >= 0.01) return "$" + n.toFixed(4);
+    /* sub cent prices get subscript style zeros the way traders write them */
+    var e = n.toExponential(4).split("e");
+    var zeros = Math.abs(parseInt(e[1], 10)) - 1;
+    var digits = e[0].replace(".", "").slice(0, 4);
+    return zeros >= 4 ? "$0.0(" + zeros + ")" + digits : "$" + n.toFixed(Math.min(12, zeros + 4));
+  }
+
+  function loadMarket(){
+    return fetch("https://api.dexscreener.com/latest/dex/tokens/" + TOKEN)
+      .then(function(r){ return r.json(); })
+      .then(function(j){
+        var pairs = (j && j.pairs) || [];
+        if (!pairs.length) return;
+        pairs.sort(function(a, b){
+          return (b.liquidity && b.liquidity.usd || 0) - (a.liquidity && a.liquidity.usd || 0);
+        });
+        var p = pairs[0];
+        m.pair  = p.pairAddress || "";
+        m.price = parseFloat(p.priceUsd) || 0;
+        m.mcap  = p.marketCap || p.fdv || 0;
+        m.chg   = p.priceChange && typeof p.priceChange.h24 === "number" ? p.priceChange.h24 : null;
+
+        /* sum volume across every pool, not just the deepest one */
+        var vol = 0;
+        for (var i = 0; i < pairs.length; i++){
+          vol += (pairs[i].volume && pairs[i].volume.h24) || 0;
+        }
+        m.vol = vol;
+        if (m.price > 0 && m.mcap > 0) m.supply = m.mcap / m.price;
+      });
+  }
+
+  /* daily candles give the highest price the pool ever printed */
+  function loadAth(){
+    if (!m.pair || !m.supply) return Promise.resolve();
+    var url = "https://api.geckoterminal.com/api/v2/networks/bsc/pools/" + m.pair
+            + "/ohlcv/day?aggregate=1&limit=1000&currency=usd";
+    return fetch(url).then(function(r){ return r.json(); }).then(function(j){
+      var list = j && j.data && j.data.attributes && j.data.attributes.ohlcv_list;
+      if (!Array.isArray(list) || !list.length) return;
+      var best = 0, when = 0;
+      for (var i = 0; i < list.length; i++){
+        var high = parseFloat(list[i][2]);
+        if (high > best){ best = high; when = list[i][0]; }
+      }
+      if (best > 0){
+        m.ath = best * m.supply;
+        m.athDate = when;
+      }
+    }).catch(function(){});
+  }
+
+  function render(){
+    el.price.textContent = m.price ? usd(m.price) : "\u2026";
+
+    if (m.chg === null || isNaN(m.chg)){
+      el.chg.textContent = "";
+      el.chg.className = "chg";
+    } else {
+      var up = m.chg >= 0;
+      el.chg.textContent = (up ? "+" : "") + m.chg.toFixed(2) + "% " + t("24h", "24 小时");
+      el.chg.className = "chg " + (up ? "up" : "down");
+    }
+
+    el.mcap.textContent = m.mcap ? usd(m.mcap) : "\u2026";
+    el.vol.textContent  = m.vol  ? usd(m.vol)  : "\u2026";
+
+    /* 3% each side, so the day's trading has already routed this much tax */
+    el.fees.textContent = m.vol
+      ? t("About ", "约 ") + usd(m.vol * 0.03) + t(" in tax to holders", " 税收流向持有者")
+      : t("Feeding the vault", "持续注入金库");
+
+    if (m.ath){
+      el.ath.textContent = usd(m.ath);
+      if (m.athDate){
+        var d = new Date(m.athDate * 1000);
+        var months = isZh()
+          ? ["1月","2月","3月","4月","5月","6月","7月","8月","9月","10月","11月","12月"]
+          : ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+        var label = isZh()
+          ? d.getFullYear() + " 年 " + months[d.getMonth()] + " " + d.getDate() + " 日"
+          : months[d.getMonth()] + " " + d.getDate() + ", " + d.getFullYear();
+        var down = m.mcap && m.ath > m.mcap ? Math.round((1 - m.mcap / m.ath) * 100) : 0;
+        el.athSub.textContent = down > 0
+          ? label + " · " + t("now ", "当前低 ") + down + t("% below", "%") 
+          : label;
+      }
+    } else {
+      el.ath.textContent = m.mcap ? usd(m.mcap) : "\u2026";
+      el.athSub.textContent = t("Peak market cap", "市值峰值");
+    }
+  }
+
+  function refresh(){
+    return loadMarket().then(loadAth).then(render).catch(function(err){
+      console.warn("[8888 market]", err && err.message);
+      render();
+    });
+  }
+
+  refresh();
+  setInterval(function(){ loadMarket().then(render).catch(function(){}); }, POLL_MS);
+  setInterval(refresh, POLL_MS * 10);
+  document.addEventListener("langchange", render);
 })();
 </script>
 </body>
