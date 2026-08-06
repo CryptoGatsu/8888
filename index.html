@@ -983,7 +983,16 @@ footer p + p{margin-top:12px}
             + "&address=" + state.vault
             + "&page=1&offset=1000&sort=desc&apikey=" + CFG.ETHERSCAN_KEY;
     return fetch(url).then(function(r){ return r.json(); }).then(function(j){
-      if (j.status !== "1" || !Array.isArray(j.result)) throw new Error(j.message || "no data");
+      if (j.status !== "1" || !Array.isArray(j.result)){
+        var msg = (j.message || "") + " " + (typeof j.result === "string" ? j.result : "");
+        /* a genuinely empty history is a valid answer; anything else means the
+           API call itself is broken, so let the RPC path have a go */
+        if (/no transactions found/i.test(msg)){
+          state.rows = []; state.allTime = true; state.feedOk = true; return;
+        }
+        console.warn("[8888 vault] Etherscan:", msg.trim());
+        throw new Error(msg);
+      }
       var out = [], total = 0;
       for (var i = 0; i < j.result.length; i++){
         var tx = j.result[i];
@@ -997,21 +1006,38 @@ footer p + p{margin-top:12px}
       state.rows = out;
       state.distributed = total;
       state.allTime = true;
+      state.feedOk = true;
     });
   }
 
   function loadFeedFromRpc(){
     var head;
+    var spans = [CFG.FALLBACK_BLOCKS, 2000, 800, 200];
+
     return rpc("eth_blockNumber").then(function(bn){
       head = parseInt(bn, 16);
-      return rpc("eth_getLogs", [{
-        address: CFG.WBNB,
-        fromBlock: "0x" + Math.max(0, head - CFG.FALLBACK_BLOCKS).toString(16),
-        toBlock: "latest",
-        topics: [TRANSFER_TOPIC, "0x" + pad(state.vault)]
-      }]);
+      var i = 0;
+      /* public BSC nodes cap eth_getLogs ranges and disagree on the limit,
+         so walk down until one of them answers */
+      function attempt(){
+        if (i >= spans.length) return Promise.resolve(null);
+        var span = spans[i++];
+        return rpc("eth_getLogs", [{
+          address: CFG.WBNB,
+          fromBlock: "0x" + Math.max(0, head - span).toString(16),
+          toBlock: "latest",
+          topics: [TRANSFER_TOPIC, "0x" + pad(state.vault)]
+        }]).then(function(r){ return Array.isArray(r) ? r : attempt(); })
+          .catch(function(){ return attempt(); });
+      }
+      return attempt();
     }).then(function(logs){
-      if (!Array.isArray(logs)) throw new Error("no logs");
+      if (!logs){
+        console.warn("[8888 vault] no RPC would serve eth_getLogs; showing totals only");
+        state.rows = [];
+        state.feedOk = false;
+        return;
+      }
       logs.reverse();
       var out = [], total = 0, now = Math.floor(Date.now() / 1000);
       for (var i = 0; i < logs.length; i++){
@@ -1030,6 +1056,7 @@ footer p + p{margin-top:12px}
       state.rows = out;
       state.distributed = total;
       state.allTime = false;
+      state.feedOk = true;
     });
   }
 
@@ -1039,6 +1066,9 @@ footer p + p{margin-top:12px}
 
   /* ---------- render ---------- */
   function render(){
+    var foot = document.querySelector(".vault-foot a");
+    if (foot && state.vault) foot.href = "https://bscscan.com/address/" + state.vault + "#tokentxns";
+
     els.dot.className = "dot" + (state.live ? "" : " off");
     els.status.textContent = state.live ? t("Live", "实时") : t("Reconnecting", "重新连接中");
 
@@ -1055,10 +1085,13 @@ footer p + p{margin-top:12px}
       : scope;
 
     if (!state.rows.length){
-      els.feed.innerHTML = '<div class="feed-empty"><b>'
-        + t("No payouts yet", "暂无分红记录") + "</b><span>"
-        + t("The vault fills with WBNB as trades happen, then pays out to holders.", "金库随交易累积 WBNB，随后向持有者分发。")
-        + "</span></div>";
+      var head = state.feedOk
+        ? t("No payouts in this window", "该时段暂无分红")
+        : t("Payout feed unavailable", "分红明细暂时无法读取");
+      var body = state.feedOk
+        ? t("The vault fills with WBNB as trades happen, then pays out to holders.", "金库随交易累积 WBNB，随后向持有者分发。")
+        : t("Totals above are still live. Full history is on BscScan.", "上方数据仍为实时。完整记录可在 BscScan 查看。");
+      els.feed.innerHTML = '<div class="feed-empty"><b>' + head + "</b><span>" + body + "</span></div>";
       els.count.textContent = "";
       return;
     }
@@ -1092,11 +1125,18 @@ footer p + p{margin-top:12px}
 
   /* ---------- boot ---------- */
   function refresh(){
-    return Promise.all([loadBalance(), loadTotalDistributed(), loadFeed()]).then(function(){
-      state.live = true;
-      render();
-    }).catch(function(){
+    /* balances decide whether we are live; a missing feed is a partial result,
+       not an outage, so it must not flip the panel to Reconnecting */
+    return Promise.all([loadBalance(), loadTotalDistributed()]).then(function(){
+      state.live = (state.vaultBal > 0 || state.reportedTotal > 0);
+      return loadFeed().catch(function(err){
+        state.feedOk = false;
+        state.rows = [];
+        console.warn("[8888 vault] payout feed unavailable:", err && err.message);
+      });
+    }).then(render).catch(function(err){
       state.live = false;
+      console.warn("[8888 vault] chain read failed:", err && err.message);
       render();
     });
   }
@@ -1111,6 +1151,8 @@ footer p + p{margin-top:12px}
         );
       }
       state.vault = v;
+      window.__vault8888 = { cfg: CFG, state: state, refresh: refresh };
+      console.info("[8888 vault] dividend contract:", v);
       return refresh().then(function(){ setInterval(refresh, CFG.POLL_MS); });
     }).catch(function(){
       blank(
